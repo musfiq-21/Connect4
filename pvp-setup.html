@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four - Player Setup (PvP)</title>
+    <link rel="stylesheet" href="pvp-setup.css">
+</head>
+<body>
+    <div class="setup-container">
+        <div class="setup-header">
+            <h1 class="setup-title">CONNECT FOUR</h1>
+            <p class="setup-subtitle">Player vs Player</p>
+            <span class="mode-badge">👥 Human vs Human</span>
+        </div>
+
+        <form id="setupForm">
+            <div class="players-container">
+                <!-- Player 1 Setup -->
+                <div class="player-card">
+                    <div class="player-label player-1-label">👤 Player 1</div>
+                    
+                    <div class="form-group">
+                        <label for="player1Name">Your Name</label>
+                        <input 
+                            type="text" 
+                            id="player1Name" 
+                            placeholder="Enter your name" 
+                            maxlength="20"
+                            required
+                        >
+                        <div class="error-message" id="player1Error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Your Color</label>
+                        <div class="color-selector">
+                            <label class="color-option red-color" title="Red">
+                                <input type="radio" name="player1Color" value="red" checked title="Select Red">
+                            </label>
+                            <label class="color-option yellow-color" title="Yellow">
+                                <input type="radio" name="player1Color" value="yellow" title="Select Yellow">
+                            </label>
+                            <label class="color-option blue-color" title="Blue">
+                                <input type="radio" name="player1Color" value="blue" title="Select Blue">
+                            </label>
+                            <label class="color-option green-color" title="Green">
+                                <input type="radio" name="player1Color" value="green" title="Select Green">
+                            </label>
+                            <label class="color-option purple-color" title="Purple">
+                                <input type="radio" name="player1Color" value="purple" title="Select Purple">
+                            </label>
+                            <label class="color-option pink-color" title="Pink">
+                                <input type="radio" name="player1Color" value="pink" title="Select Pink">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player 2 Setup -->
+                <div class="player-card">
+                    <div class="player-label player-2-label">👤 Player 2</div>
+                    
+                    <div class="form-group">
+                        <label for="player2Name">Your Name</label>
+                        <input 
+                            type="text" 
+                            id="player2Name" 
+                            placeholder="Enter your name" 
+                            maxlength="20"
+                            required
+                        >
+                        <div class="error-message" id="player2Error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Your Color</label>
+                        <div class="color-selector">
+                            <label class="color-option red-color" title="Red">
+                                <input type="radio" name="player2Color" value="red" title="Select Red">
+                            </label>
+                            <label class="color-option yellow-color" title="Yellow">
+                                <input type="radio" name="player2Color" value="yellow" checked title="Select Yellow">
+                            </label>
+                            <label class="color-option blue-color" title="Blue">
+                                <input type="radio" name="player2Color" value="blue" title="Select Blue">
+                            </label>
+                            <label class="color-option green-color" title="Green">
+                                <input type="radio" name="player2Color" value="green" title="Select Green">
+                            </label>
+                            <label class="color-option purple-color" title="Purple">
+                                <input type="radio" name="player2Color" value="purple" title="Select Purple">
+                            </label>
+                            <label class="color-option pink-color" title="Pink">
+                                <input type="radio" name="player2Color" value="pink" title="Select Pink">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button type="button" class="back-btn" onclick="goBack()">Back</button>
+                <button type="submit" class="start-btn">Start Game</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function updateColorSelection() {
+            const player1Color = document.querySelector('input[name="player1Color"]:checked').value;
+            const player2Color = document.querySelector('input[name="player2Color"]:checked').value;
+
+            if (player1Color === player2Color) {
+                const allColors = ['red', 'yellow', 'blue', 'green', 'purple', 'pink'];
+                for (let color of allColors) {
+                    if (color !== player1Color) {
+                        document.querySelector(`input[name="player2Color"][value="${color}"]`).checked = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        document.querySelectorAll('input[name="player1Color"]').forEach(radio => {
+            radio.addEventListener('change', updateColorSelection);
+        });
+
+        document.querySelectorAll('.color-option input').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const label = this.parentElement;
+                document.querySelectorAll('.color-option').forEach(el => {
+                    el.classList.remove('selected');
+                });
+                label.classList.add('selected');
+            });
+        });
+
+        document.getElementById('setupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const player1Name = document.getElementById('player1Name').value.trim();
+            const player2Name = document.getElementById('player2Name').value.trim();
+
+            if (!player1Name) {
+                showError('player1Error', 'Please enter your name');
+                return;
+            }
+
+            if (!player2Name) {
+                showError('player2Error', 'Please enter your name');
+                return;
+            }
+
+            document.getElementById('player1Error').classList.remove('show');
+            document.getElementById('player2Error').classList.remove('show');
+
+            const player1Color = document.querySelector('input[name="player1Color"]:checked').value;
+            const player2Color = document.querySelector('input[name="player2Color"]:checked').value;
+
+            if (player1Color === player2Color) {
+                showError('player2Error', 'Please select different colors');
+                return;
+            }
+
+            localStorage.setItem('player1Name', player1Name);
+            localStorage.setItem('player2Name', player2Name);
+            localStorage.setItem('player1Color', player1Color);
+            localStorage.setItem('player2Color', player2Color);
+
+            window.location.href = 'pvp-game.html';
+        });
+
+        function showError(elementId, message) {
+            const errorEl = document.getElementById(elementId);
+            errorEl.textContent = message;
+            errorEl.classList.add('show');
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        window.addEventListener('load', function() {
+            document.querySelector('input[name="player1Color"]:checked').parentElement.classList.add('selected');
+            document.querySelector('input[name="player2Color"]:checked').parentElement.classList.add('selected');
+        });
+    </script>
+</body>
+</html>
