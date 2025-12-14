@@ -1,3 +1,8 @@
+import numpy as np
+
+PLAYER = 1
+AI = 2
+
 def is_winning_move(board, player):
     board_np = np.array(board)
     rows = board_np.shape[0]
@@ -42,3 +47,10 @@ def is_terminal_node(board):
 
 def drop_piece(board, row, col, piece):
     board[row][col] = piece
+
+def get_next_open_row(board, col):
+    rows = board.shape[0]
+    for r in range(rows - 1, -1, -1):
+        if board[r][col] == 0:
+            return r
+    return -1

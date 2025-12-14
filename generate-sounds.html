@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Game Sounds</title>
+    <link rel="stylesheet" href="generate-sounds.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Connect Four - Sound Generator</h1>
+        <p>Click the buttons below to generate and download sound effects:</p>
+        
+        <button onclick="generateMoveSound()">Generate Move Sound</button>
+        <button onclick="generateWinSound()">Generate Win Sound</button>
+        <button onclick="generateDrawSound()">Generate Draw Sound</button>
+        <button onclick="generateBackgroundMusic()">Generate Background Music</button>
+        
+        <div id="status"></div>
+        
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Click each button to generate the sound files</li>
+            <li>Download links will appear automatically</li>
+            <li>Save each file to the 'sounds' folder in your Connect Four directory</li>
+            <li>Files should be named: move.mp3, win.mp3, draw.mp3, background.mp3</li>
+        </ol>
+    </div>
+
+    <script src="generate-sounds.js"></script>
+</body>
+</html>

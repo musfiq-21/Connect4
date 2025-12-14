@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four - Player Setup (PvP)</title>
+    <link rel="stylesheet" href="pvp-setup.css">
+</head>
+<body>
+    <div class="setup-container">
+        <div class="setup-header">
+            <h1 class="setup-title">CONNECT FOUR</h1>
+            <p class="setup-subtitle">Player vs Player</p>
+            <span class="mode-badge">👥 Human vs Human</span>
+        </div>
+
+        <form id="setupForm">
+            <div class="players-container">
+                <!-- Player 1 Setup -->
+                <div class="player-card">
+                    <div class="player-label player-1-label">👤 Player 1</div>
+                    
+                    <div class="form-group">
+                        <label for="player1Name">Your Name</label>
+                        <input 
+                            type="text" 
+                            id="player1Name" 
+                            placeholder="Enter your name" 
+                            maxlength="20"
+                            required
+                        >
+                        <div class="error-message" id="player1Error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Your Color</label>
+                        <div class="color-selector">
+                            <label class="color-option red-color" title="Red">
+                                <input type="radio" name="player1Color" value="red" checked title="Select Red">
+                            </label>
+                            <label class="color-option yellow-color" title="Yellow">
+                                <input type="radio" name="player1Color" value="yellow" title="Select Yellow">
+                            </label>
+                            <label class="color-option blue-color" title="Blue">
+                                <input type="radio" name="player1Color" value="blue" title="Select Blue">
+                            </label>
+                            <label class="color-option green-color" title="Green">
+                                <input type="radio" name="player1Color" value="green" title="Select Green">
+                            </label>
+                            <label class="color-option purple-color" title="Purple">
+                                <input type="radio" name="player1Color" value="purple" title="Select Purple">
+                            </label>
+                            <label class="color-option pink-color" title="Pink">
+                                <input type="radio" name="player1Color" value="pink" title="Select Pink">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player 2 Setup -->
+                <div class="player-card">
+                    <div class="player-label player-2-label">👤 Player 2</div>
+                    
+                    <div class="form-group">
+                        <label for="player2Name">Your Name</label>
+                        <input 
+                            type="text" 
+                            id="player2Name" 
+                            placeholder="Enter your name" 
+                            maxlength="20"
+                            required
+                        >
+                        <div class="error-message" id="player2Error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Your Color</label>
+                        <div class="color-selector">
+                            <label class="color-option red-color" title="Red">
+                                <input type="radio" name="player2Color" value="red" title="Select Red">
+                            </label>
+                            <label class="color-option yellow-color" title="Yellow">
+                                <input type="radio" name="player2Color" value="yellow" checked title="Select Yellow">
+                            </label>
+                            <label class="color-option blue-color" title="Blue">
+                                <input type="radio" name="player2Color" value="blue" title="Select Blue">
+                            </label>
+                            <label class="color-option green-color" title="Green">
+                                <input type="radio" name="player2Color" value="green" title="Select Green">
+                            </label>
+                            <label class="color-option purple-color" title="Purple">
+                                <input type="radio" name="player2Color" value="purple" title="Select Purple">
+                            </label>
+                            <label class="color-option pink-color" title="Pink">
+                                <input type="radio" name="player2Color" value="pink" title="Select Pink">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button type="button" class="back-btn" onclick="goBack()">Back</button>
+                <button type="submit" class="start-btn">Start Game</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="pvs-setup.js"></script>
+</body>
+</html>
