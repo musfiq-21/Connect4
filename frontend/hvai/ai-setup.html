@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four - Player Setup (AI)</title>
+    <link rel="stylesheet" href="./ai-setup.css">
+</head>
+<body>
+
+    <div class="form-group">
+    <label class="form-label">AI Difficulty</label>
+
+    <ul class="ai-levels">
+        <li class="ai-level selected">
+            <label>
+                <input
+                    type="radio"
+                    name="aiLevel"
+                    value="easy"
+                    checked
+                />
+                joduAI <span class="level-tag">(easy)</span>
+            </label>
+        </li>
+
+        <li class="ai-level">
+            <label>
+                <input
+                    type="radio"
+                    name="aiLevel"
+                    value="medium"
+                />
+                modhuAI <span class="level-tag">(medium)</span>
+            </label>
+        </li>
+
+        <li class="ai-level">
+            <label>
+                <input
+                    type="radio"
+                    name="aiLevel"
+                    value="hard"
+                />
+                koduAI <span class="level-tag">(hard)</span>
+            </label>
+        </li>
+    </ul>
+</div>
+
+
+    <div class="setup-container">
+        <div class="setup-header">
+            <h1 class="setup-title">CONNECT FOUR</h1>
+            <p class="setup-subtitle">Challenge the AI</p>
+            <span class="mode-badge">🤖 Human vs AI</span>
+        </div>
+
+        <form id="setupForm">
+            <div class="players-container">
+
+                <!-- Player Setup -->
+                <div class="player-card">
+                    <div class="player-label player-1-label">👤 You</div>
+
+                    <div class="form-group">
+                        <label for="player1Name">Your Name</label>
+                        <input
+                            type="text"
+                            id="player1Name"
+                            placeholder="Enter your name"
+                            maxlength="20"
+                            required
+                        >
+                        <div class="error-message" id="player1Error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Your Color</label>
+                        <div class="color-selector">
+                            <label class="color-option red-color">
+                                <input type="radio" name="player1Color" value="red" checked>
+                            </label>
+                            <label class="color-option yellow-color">
+                                <input type="radio" name="player1Color" value="yellow">
+                            </label>
+                            <label class="color-option blue-color">
+                                <input type="radio" name="player1Color" value="blue">
+                            </label>
+                            <label class="color-option green-color">
+                                <input type="radio" name="player1Color" value="green">
+                            </label>
+                            <label class="color-option purple-color">
+                                <input type="radio" name="player1Color" value="purple">
+                            </label>
+                            <label class="color-option pink-color">
+                                <input type="radio" name="player1Color" value="pink">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Setup -->
+                <div class="player-card">
+                    <div class="player-label player-2-label">🤖 AI Opponent</div>
+
+                    <div class="form-group">
+                        <label>AI Name</label>
+                        <div class="ai-display">🤖 AI</div>
+                        <div class="ai-note">
+                            The AI will use the default name "AI"
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>AI Color</label>
+                        <div class="color-selector">
+                            <label class="color-option red-color">
+                                <input type="radio" name="player2Color" value="red">
+                            </label>
+                            <label class="color-option yellow-color">
+                                <input type="radio" name="player2Color" value="yellow" checked>
+                            </label>
+                            <label class="color-option blue-color">
+                                <input type="radio" name="player2Color" value="blue">
+                            </label>
+                            <label class="color-option green-color">
+                                <input type="radio" name="player2Color" value="green">
+                            </label>
+                            <label class="color-option purple-color">
+                                <input type="radio" name="player2Color" value="purple">
+                            </label>
+                            <label class="color-option pink-color">
+                                <input type="radio" name="player2Color" value="pink">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="button-container">
+                <button type="button" class="back-btn" onclick="goBack()">Back</button>
+                <button type="submit" class="start-btn">Start Game</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="./ai-setup.js"></script>
+</body>
+</html>

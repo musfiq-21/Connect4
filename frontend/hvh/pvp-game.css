@@ -34,7 +34,7 @@ body {
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(-400px);
     }
     to {
         opacity: 1;

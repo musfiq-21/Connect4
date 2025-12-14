@@ -1,9 +1,10 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-
+from api.ai_move import router as ai_move_router
 
 app = FastAPI()
+app.include_router(ai_move_router)
 
 app.add_middleware(
     CORSMiddleware,

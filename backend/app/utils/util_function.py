@@ -2,55 +2,67 @@ import numpy as np
 
 PLAYER = 1
 AI = 2
-
-def is_winning_move(board, player):
-    board_np = np.array(board)
-    rows = board_np.shape[0]
-    cols = board_np.shape[1]
-
-    for r in range(rows):
-        for c in range(cols - 3):
-            if all(board_np[r, c + i] == player for i in range(4)):
-                return True
-
-    for c in range(cols):
-        for r in range(rows - 3):
-            if all(board_np[r + i, c] == player for i in range(4)):
-                return True
-
-    for r in range(rows - 3):
-        for c in range(cols - 3):
-            if all(board_np[r + i, c + i] == player for i in range(4)):
-                return True
-
-    for r in range(rows - 3):
-        for c in range(3, cols):
-            if all(board_np[r + i, c - i] == player for i in range(4)):
-                return True
-    return False
+ROWS = 6
+COLS = 7
 
 def get_valid_locations(board):
-    board_np = np.array(board)
-    rows = board_np.shape[0]
-    cols = board_np.shape[1]
 
-    locations = []
+    return [c for c in range(COLS) if board[0][c] == 0]
 
-    for c in range(cols):
-        if board_np[0, c] == 0:
-            locations.append(c)
 
-    return locations
+def get_next_open_row(board, col):
 
-def is_terminal_node(board):
-    return is_winning_move(board, PLAYER) or is_winning_move(board, AI) or len(get_valid_locations(board)) == 0
+    for r in range(ROWS - 1, -1, -1):
+        if board[r][col] == 0:
+            return r
+    return None
+
 
 def drop_piece(board, row, col, piece):
     board[row][col] = piece
 
-def get_next_open_row(board, col):
-    rows = board.shape[0]
-    for r in range(rows - 1, -1, -1):
-        if board[r][col] == 0:
-            return r
-    return -1
+
+def is_terminal_node(board):
+    return (
+        is_winning_move(board, PLAYER)
+        or is_winning_move(board, AI)
+        or len(get_valid_locations(board)) == 0
+    )
+
+
+def is_winning_move(board, piece):
+    for r in range(ROWS):
+        for c in range(COLS - 3):
+            if all(board[r][c + i] == piece for i in range(4)):
+                return True
+
+    for c in range(COLS):
+        for r in range(ROWS - 3):
+            if all(board[r + i][c] == piece for i in range(4)):
+                return True
+
+    for r in range(ROWS - 3):
+        for c in range(COLS - 3):
+            if all(board[r + i][c + i] == piece for i in range(4)):
+                return True
+    for r in range(ROWS - 3):
+        for c in range(3, COLS):
+            if all(board[r + i][c - i] == piece for i in range(4)):
+                return True
+
+    return False
+
+def has_immediate_winning_move(board, piece):
+    for col in get_valid_locations(board):
+        row = get_next_open_row(board, col)
+        if row is None:
+            continue
+
+        board[row][col] = piece
+        win = is_winning_move(board, piece)
+        board[row][col] = 0
+
+        if win:
+            return True
+
+    return False
